@@ -7,6 +7,32 @@ struct User {
     active: bool,
 }
 
+impl User {
+    fn get_username(&self) -> &String {
+        &self.username
+    }
+
+    fn get_email(&self) -> &String {
+        &self.email
+    }
+
+    fn get_sign_in_count(&self) -> u64 {
+        self.sign_in_count
+    }
+
+    fn is_active(&self) -> bool {
+        self.active
+    }
+
+    fn is_active_to_string(&self) -> String {
+        if self.active {
+            String::from("active")
+        } else {
+            String::from("inactive")
+        }
+    }
+}
+
 // Function to create new User
 fn create_user(username: String, email: String) -> User {
     User {
@@ -64,4 +90,25 @@ fn main() {
     println!("{:?}", user);
     // Print pretty struct
     println!("{:#?}", user);
+
+    // Test User methods
+    println!("Test User methods");
+    println!("The username of the user is {}.", user.get_username());
+    println!("The email of the user is {}", user.get_email());
+    println!(
+        "The sign in count of the user is {}.",
+        user.get_sign_in_count()
+    );
+    println!(
+        "The active status of the user is {}.",
+        if user.is_active() {
+            "active"
+        } else {
+            "inactive"
+        }
+    );
+    println!(
+        "The active status of the user is {}.",
+        user.is_active_to_string()
+    );
 }

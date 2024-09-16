@@ -1,7 +1,7 @@
+mod optionsnum;
 mod provider;
 mod user;
 
-use provider::_Provider;
 use user::User;
 
 // Structs in Rust
@@ -146,4 +146,7 @@ fn main() {
         info: String::from("This is the name of the provider."),
     };
     println!("The kind of the provider is {:#?}", provider_name.kind);
+
+    // Test with optionsnum.rs
+    optionsnum::test();
 }

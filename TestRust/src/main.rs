@@ -1,13 +1,19 @@
+mod provider;
+mod user;
+
+use provider::_Provider;
+use user::User;
+
 // Structs in Rust
 #[derive(Debug)]
-struct User {
+struct UserInFile {
     username: String,
     email: String,
     sign_in_count: u64,
     active: bool,
 }
 
-impl User {
+impl UserInFile {
     fn get_username(&self) -> &String {
         &self.username
     }
@@ -34,8 +40,8 @@ impl User {
 }
 
 // Function to create new User
-fn create_user(username: String, email: String) -> User {
-    User {
+fn create_user(username: String, email: String) -> UserInFile {
+    UserInFile {
         username,
         email,
         sign_in_count: 0,
@@ -67,7 +73,7 @@ fn main() {
     println!("The first element of the vector is {}.", vec[0]);
 
     // Test struct in Rust
-    let user = User {
+    let user = UserInFile {
         username: String::from("John Doe"),
         email: String::from("abc@gmail.com"),
         sign_in_count: 1,
@@ -111,4 +117,33 @@ fn main() {
         "The active status of the user is {}.",
         user.is_active_to_string()
     );
+
+    // print one string for 50 times
+    println!("{}", "-".repeat(50));
+
+    // Test User struct other file
+    let user_other_file = User::new(
+        100,
+        String::from("John"),
+        String::from("hypl1001@gmail.com"),
+    );
+
+    println!("The id of the user is {}.", user_other_file.get_id());
+    println!(
+        "The username of the user is {}.",
+        user_other_file.get_name()
+    );
+    println!("The email of the user is {}.", user_other_file.get_email());
+    println!(
+        "The sign in count of the user is {}.",
+        user_other_file.get_id()
+    );
+    println!("The data user to string is {}", user_other_file.to_string());
+
+    // Test with enum and struct in provider.rs
+    let provider_name = provider::_Provider {
+        kind: provider::ProviderKind::Name(String::from("John Doe")),
+        info: String::from("This is the name of the provider."),
+    };
+    println!("The kind of the provider is {:#?}", provider_name.kind);
 }
